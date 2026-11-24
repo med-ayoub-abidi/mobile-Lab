@@ -74,7 +74,7 @@ in this repository). `render.yaml` must exist at the repo root on that branch.
 
 2. In the Render Dashboard, click **New > Blueprint**.
 
-3. Connect the GitHub repository `Ayoub-27764101/mobile-Lab` and select branch
+3. Connect the GitHub repository `med-ayoub-abidi/mobile-Lab` and select branch
    **`production`**.
 
 4. Review the two resources, then click **Apply**. Render creates the database

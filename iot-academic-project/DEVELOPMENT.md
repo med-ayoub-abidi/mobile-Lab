@@ -5,7 +5,7 @@ to work on the IoT academic project.
 
 ## Repository
 
-- GitHub: <https://github.com/Ayoub-27764101/mobile-Lab>
+- GitHub: <https://github.com/med-ayoub-abidi/mobile-Lab>
 - Project folder: `iot-academic-project/`
 - Main branch: `main`
 - Backend: Symfony 7.4 / PHP 8.4
@@ -66,7 +66,7 @@ Optional depending on your task:
 ### Clone the repository
 
 ```bash
-git clone https://github.com/Ayoub-27764101/mobile-Lab.git
+git clone https://github.com/med-ayoub-abidi/mobile-Lab.git
 cd mobile-Lab/iot-academic-project
 ```
 
