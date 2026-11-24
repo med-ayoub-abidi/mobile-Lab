@@ -1,0 +1,41 @@
+# Render Blueprint for the IoT Academic Project.
+# Deploy from the repository root; select the "production" branch in Render.
+# See iot-academic-project/docs/render-deployment.md for the full walkthrough.
+
+services:
+  - type: web
+    name: iot-academic-backend
+    runtime: docker
+    # Only commits on production trigger deploys. No dev/pre-prod deploys.
+    branch: production
+    region: oregon
+    plan: free
+    dockerfilePath: ./iot-academic-project/backend/Dockerfile
+    dockerContext: ./iot-academic-project/backend
+    healthCheckPath: /health
+    envVars:
+      - key: APP_ENV
+        value: prod
+      - key: APP_DEBUG
+        value: 0
+      - key: APP_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: iot-academic-db
+          property: connectionString
+      - key: DATABASE_SERVER_VERSION
+        value: '18'
+      - key: JWT_PASSPHRASE
+        generateValue: true
+      # Update this regex with the Flutter/web origins that call the API.
+      - key: CORS_ALLOW_ORIGIN
+        value: '^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$|^https://.*\.onrender\.com$|^capacitor://localhost$|^ionic://localhost$'
+
+databases:
+  - name: iot-academic-db
+    plan: free
+    region: oregon
+    postgresMajorVersion: '18'
+    databaseName: app_db
+    user: symfony

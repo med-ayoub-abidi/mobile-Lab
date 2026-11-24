@@ -18,6 +18,12 @@
 Read [DEVELOPMENT.md](DEVELOPMENT.md) for the complete developer workflow,
 what DevOps has already configured, and the remaining tasks.
 
+## Deployment
+The backend and PostgreSQL database are deployed to Render with the Blueprint
+at the repository root (`render.yaml`). See
+[docs/render-deployment.md](docs/render-deployment.md) for the step-by-step
+guide.
+
 ## Quick Start
 ```bash
 # From the repository root

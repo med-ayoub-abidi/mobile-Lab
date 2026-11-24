@@ -36,11 +36,14 @@ to work on the IoT academic project.
 - Pushed the scaffold to GitHub:
   - `ac25e9d` - Add IoT academic project scaffold
   - `adad3c7` - Move IoT CI workflows to repository root
+- Added a Render Blueprint (`render.yaml` at the repository root) that deploys
+  the Docker backend and a managed PostgreSQL 18 database. See
+  [docs/render-deployment.md](docs/render-deployment.md).
 
 ### Not done yet (DevOps backlog)
 
 - Branch protection on `main`.
-- Production/staging deployment.
+- Verify the first Render deployment (Blueprint is ready).
 - Real Terraform infrastructure.
 - Database backups and restore tests.
 - Monitoring, logging, and uptime alerts.
