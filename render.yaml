@@ -12,7 +12,7 @@ services:
     plan: free
     dockerfilePath: ./iot-academic-project/backend/Dockerfile
     dockerContext: ./iot-academic-project/backend
-    healthCheckPath: /health
+
     envVars:
       - key: APP_ENV
         value: prod
