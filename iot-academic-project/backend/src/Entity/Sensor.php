@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use Apiplatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\SensorRepository;
 use Doctrine\ORM\Mapping as ORM;
 

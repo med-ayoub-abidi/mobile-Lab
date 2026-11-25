@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MeasurementRepository::class)]
 #[ORM\Table(name: 'measurements')]
+#[ORM\UniqueConstraint(name: 'UNIQ_MEASUREMENT_SENSOR_TIME', columns: ['sensor_id', 'measured_at'])]
 #[ApiResource]
 class measurements
 {
@@ -17,17 +18,22 @@ class measurements
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $sensor_id = null;
+    #[ORM\Column]
+    private ?int $sensorId = null;
 
-    #[ORM\Column(type: Types::FLOAT, nullable: true)]
-    private ?float $valve = null;
+    #[ORM\Column(type: Types::FLOAT)]
+    private ?float $value = null;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
-    private ?\DateTimeImmutable $measured_at = null;
+    #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE)]
+    private ?\DateTimeImmutable $measuredAt = null;
 
-    #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE, nullable: true)]
-    private ?\DateTimeImmutable $created_at = null;
+    #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE, options: ['default' => 'CURRENT_TIMESTAMP'])]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -36,45 +42,45 @@ class measurements
 
     public function getSensorId(): ?int
     {
-        return $this->sensor_id;
+        return $this->sensorId;
     }
 
     public function setSensorId(?int $sensorId): static
     {
-        $this->sensor_id = $sensorId;
+        $this->sensorId = $sensorId;
         return $this;
     }
 
-    public function getValve(): ?float
+    public function getValue(): ?float
     {
-        return $this->valve;
+        return $this->value;
     }
 
-    public function setValve(?float $valve): static
+    public function setValue(?float $value): static
     {
-        $this->valve = $valve;
+        $this->value = $value;
         return $this;
     }
 
     public function getMeasuredAt(): ?\DateTimeImmutable
     {
-        return $this->measured_at;
+        return $this->measuredAt;
     }
 
     public function setMeasuredAt(?\DateTimeImmutable $measuredAt): static
     {
-        $this->measured_at = $measuredAt;
+        $this->measuredAt = $measuredAt;
         return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
     public function setCreatedAt(?\DateTimeImmutable $createdAt): static
     {
-        $this->created_at = $createdAt;
+        $this->createdAt = $createdAt;
         return $this;
     }
 }
