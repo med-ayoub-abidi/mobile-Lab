@@ -1,0 +1,74 @@
+{
+  "_info": "Green Home - JSON de test. Kol objet = body wa7ed fi Swagger (POST). Content-Type: application/ld+json",
+
+  "POST /api/devices": [
+    {
+      "name": "Serre A",
+      "location": "Jardin nord",
+      "apiTokenHash": "ed13087c6a7baf24facb983bf256075b28d4e500aed6e76f5a5640def6cc066c",
+      "isActive": true
+    },
+    {
+      "name": "Serre B",
+      "location": "Toit",
+      "apiTokenHash": "5526f469f24c389deeabfe12d6d99d83f1ce100759b494b30bab75f20203b90c",
+      "isActive": true
+    }
+  ],
+
+  "POST /api/sensors": [
+    { "type": "temperature",   "unit": "°C",  "label": "Température Serre A" },
+    { "type": "air_humidity",  "unit": "%",   "label": "Humidité air Serre A" },
+    { "type": "soil_moisture", "unit": "%",   "label": "Humidité sol Serre A" },
+    { "type": "light",         "unit": "lux", "label": "Luminosité Serre A" }
+  ],
+
+  "POST /api/measurements": [
+    { "sensorId": 1, "value": 22.4, "measuredAt": "2026-11-25T18:00:00+01:00" },
+    { "sensorId": 1, "value": 22.9, "measuredAt": "2026-11-25T18:15:00+01:00" },
+    { "sensorId": 1, "value": 23.6, "measuredAt": "2026-11-25T18:30:00+01:00" },
+    { "sensorId": 1, "value": 24.1, "measuredAt": "2026-11-25T18:45:00+01:00" },
+    { "sensorId": 1, "value": 23.8, "measuredAt": "2026-11-25T19:00:00+01:00" },
+
+    { "sensorId": 2, "value": 61.0, "measuredAt": "2026-11-25T18:00:00+01:00" },
+    { "sensorId": 2, "value": 63.5, "measuredAt": "2026-11-25T18:15:00+01:00" },
+    { "sensorId": 2, "value": 65.2, "measuredAt": "2026-11-25T18:30:00+01:00" },
+    { "sensorId": 2, "value": 64.0, "measuredAt": "2026-11-25T18:45:00+01:00" },
+    { "sensorId": 2, "value": 62.7, "measuredAt": "2026-11-25T19:00:00+01:00" },
+
+    { "sensorId": 3, "value": 41.0, "measuredAt": "2026-11-25T18:00:00+01:00" },
+    { "sensorId": 3, "value": 39.5, "measuredAt": "2026-11-25T18:30:00+01:00" },
+    { "sensorId": 3, "value": 37.8, "measuredAt": "2026-11-25T19:00:00+01:00" },
+
+    { "sensorId": 4, "value": 820,  "measuredAt": "2026-11-25T18:00:00+01:00" },
+    { "sensorId": 4, "value": 540,  "measuredAt": "2026-11-25T18:30:00+01:00" },
+    { "sensorId": 4, "value": 120,  "measuredAt": "2026-11-25T19:00:00+01:00" }
+  ],
+
+  "POST /api/commands": [
+    { "actuator": "pump", "action": "on",  "durationSeconds": 60 },
+    { "actuator": "led",  "action": "on" },
+    { "actuator": "pump", "action": "off" },
+    { "actuator": "fan",  "action": "on",  "durationSeconds": 300, "status": "executed" }
+  ],
+
+  "TESTS D'ERREUR (lazem yfechlou)": {
+    "doublon measurement (UNIQUE sensor_id + measured_at) -> erreur": {
+      "sensorId": 1, "value": 99.9, "measuredAt": "2026-11-25T18:00:00+01:00"
+    },
+    "value manquante (NOT NULL) -> erreur": {
+      "sensorId": 1, "measuredAt": "2026-11-25T20:00:00+01:00"
+    },
+    "measuredAt manquant (NOT NULL) -> erreur": {
+      "sensorId": 1, "value": 20.0
+    }
+  },
+
+  "GET a tester": [
+    "GET /api/measurements",
+    "GET /api/measurements/1",
+    "GET /api/sensors",
+    "GET /api/devices",
+    "GET /api/commands"
+  ]
+}
