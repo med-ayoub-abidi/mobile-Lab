@@ -10,7 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: MeasurementRepository::class)]
 #[ORM\Table(name: 'measurements')]
 #[ORM\UniqueConstraint(name: 'UNIQ_MEASUREMENT_SENSOR_TIME', columns: ['sensor_id', 'measured_at'])]
-#[ApiResource]
+#[ApiResource(
+    order: ['measuredAt' => 'DESC'],
+)]
+
 class measurements
 {
     #[ORM\Id]
